@@ -35,7 +35,7 @@
             <h2 class="display-5">1984</h2>
             <p class="lead"><a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.americanas.com.br%2Fproduto%2F2643058628%2Flivro-1984-george-orwell-capa-brochura&psig=AOvVaw37fw5ubP4dAuSMdNBvSq3d&ust=1726878538271000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPj-vICi0IgDFQAAAAAdAAAAABAE">Saiba mais sobre o título!</a></p>
             </div>
-            <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 400px; border-radius: 21px 21px 0 0;">
+            <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 458px; border-radius: 21px 21px 0 0;">
                 <img src="https://images-americanas.b2w.io/produtos/2643058628/imagens/livro-1984-george-orwell-capa-brochura/2643058628_1_large.jpg" alt="">
             </div>
         </div>
