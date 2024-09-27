@@ -19,3 +19,6 @@ cria o model para se comunicar com o database
 
 --para atualizar sozinho as paginas
     - usar o vite
+
+
+--criar os creates das outras tabelas em casa
