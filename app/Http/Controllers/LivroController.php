@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\LivroModel;
+use App\Models\Livro;
 class LivroController extends Controller
 {
     /**
@@ -11,7 +11,7 @@ class LivroController extends Controller
      */
     public function index()
     {
-        $livros = LivroModel::all(); //all traz todas as informações da tabela
+        $livros = Livro::all(); //all traz todas as informações da tabela
         return view('livros.index', compact('livros'));
     }
 

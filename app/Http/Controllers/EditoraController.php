@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 //para comunicar a model com o controller
-use App\Models\EditoraModel;
+use App\Models\Editora;
 
 class EditoraController extends Controller
 {
@@ -14,7 +14,7 @@ class EditoraController extends Controller
     public function index()
     {
         //quando acessar o index, ele retorna a tela das editoras
-        $editoras = EditoraModel::all(); //all traz todas as informações da tabela
+        $editoras = Editora::all(); //all traz todas as informações da tabela
         return view('editoras.index', compact('editoras'));
     }
 
@@ -38,7 +38,7 @@ class EditoraController extends Controller
             'CNPJ' => 'required|string|max:20'
         ]);
 
-        EditoraModel::create($request->all);//cria e manda as coisas pro banco
+        Editora::create($request->all);//cria e manda as coisas pro banco
 
         return redirect() -> route('editoras.index')->with('Deu Certo');//retorna para o index - se quero ir pro create, deixo create
     }
