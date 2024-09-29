@@ -11,11 +11,11 @@
         <div class="container">
             <div class="col-6 mx-auto">
                 <div class="mb-3">
-                    <label for="nome" class="form-label labels"><strong>Nome:</strong></label>
+                    <label for="nome" class="form-label text-white"><strong>Nome:</strong></label>
                     <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome da editora...">
                 </div>
                 <div class="mb-3">
-                    <label for="cnpj" class="form-label"><strong>CNPJ:</strong></label>
+                    <label for="cnpj" class="form-label text-white"><strong>CNPJ:</strong></label>
                     <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Digite o CNPJ da editora...">
                 </div>
                 <div class="text-center">

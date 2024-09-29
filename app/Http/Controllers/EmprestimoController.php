@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Emprestimo;
+
 class EmprestimoController extends Controller
 {
     /**
@@ -11,7 +13,8 @@ class EmprestimoController extends Controller
      */
     public function index()
     {
-        //
+        $emprestimos = Emprestimo::all(); //all traz todas as informações da tabela
+        return view('emprestimos.index', compact('emprestimos'));
     }
 
     /**
@@ -19,7 +22,7 @@ class EmprestimoController extends Controller
      */
     public function create()
     {
-        //
+        return view ('emprestimos.create');
     }
 
     /**
