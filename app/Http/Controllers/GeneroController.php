@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Genero;
+
 class GeneroController extends Controller
 {
     /**
@@ -11,7 +13,9 @@ class GeneroController extends Controller
      */
     public function index()
     {
-        //
+        $generos = Genero::all(); //all traz todas as informações da tabela
+        return view('generos.index', compact('generos'));
+        
     }
 
     /**
@@ -19,7 +23,7 @@ class GeneroController extends Controller
      */
     public function create()
     {
-        //
+        return view ('generos.create');
     }
 
     /**
@@ -27,7 +31,13 @@ class GeneroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([    //verifica cada coluna do banco de dados, se tem o que quero nas colunas
+            'descricao' => 'required|string|max:255',
+        ]);
+
+        Genero::create($request->all);//cria e manda as coisas pro banco
+
+        return redirect() -> route('generos.index')->with('Deu Certo');
     }
 
     /**
