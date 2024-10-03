@@ -6,6 +6,7 @@ use App\Http\Controllers\LivroController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\ItemEmprestimoController;
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -48,5 +49,6 @@ Route::resource('generos',GeneroController::class);
 Route::resource('editoras',EditoraController::class);
 Route::resource('emprestimos',EmprestimoController::class);
 Route::resource('itemEmprestimos',ItemEmprestimoController::class);
+Route::resource('clientes',ClienteController::class);
 
 require __DIR__.'/auth.php';

@@ -8,6 +8,7 @@
 </head>
 <body>
     <form action="{{route('generos.store')}}" method="POST">
+        @csrf
         <div class="container">
             <div class="col-6 mx-auto">
                 <div class="mb-3">

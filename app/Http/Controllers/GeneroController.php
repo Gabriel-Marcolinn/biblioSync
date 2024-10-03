@@ -35,9 +35,9 @@ class GeneroController extends Controller
             'descricao' => 'required|string|max:255',
         ]);
 
-        Genero::create($request->all);//cria e manda as coisas pro banco
+        Genero::create($request->all());//cria e manda as coisas pro banco
 
-        return redirect() -> route('generos.index')->with('Deu Certo');
+        return redirect() -> route('generos.index')->with('success', 'Gênero criado com sucesso!');
     }
 
     /**
