@@ -29,7 +29,17 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([    //verifica cada coluna do banco de dados, se tem o que quero nas colunas
+            'nome' => 'required|string|max:50',
+            'CPF' => 'required|string|max:15',
+            'email' => 'required|string|max:70',
+            'telefone' => 'string|max:50',            
+        ]);
+
+        Cliente::create($request->all());//cria e manda as coisas pro banco
+
+        return redirect() -> route('clientes.index')->with('success', 'Cliente criado com sucesso!');
+
     }
 
     /**

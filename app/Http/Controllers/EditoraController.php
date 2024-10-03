@@ -40,7 +40,7 @@ class EditoraController extends Controller
 
         Editora::create($request->all());//cria e manda as coisas pro banco(editora é o model, create é o insert e o request )
 
-        return redirect() -> route('editoras.index')->with('Deu Certo');//retorna para o index - se quero ir pro create, deixo create
+        return redirect() -> route('editoras.index')->with('success', 'Editora criada com sucesso!');//retorna para o index - se quero ir pro create, deixo create
     }
 
     /**
