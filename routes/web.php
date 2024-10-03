@@ -5,6 +5,7 @@ use App\Http\Controllers\EditoraController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\EmprestimoController;
+use App\Http\Controllers\ItemEmprestimoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,15 +33,20 @@ Route::get('/emprestimos', function () {
     return view('emprestimos.index');
 })->middleware(['auth', 'verified'])->name('emprestimos');
 */
+
+//rota pelo middleware é para pode escolher quais funções quero, como edit, update, destroy
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+//usando o resource, a rota já sabe se estou fazendo edit, update ou destroy
 Route::resource('livros',LivroController::class);
 Route::resource('generos',GeneroController::class);
 Route::resource('editoras',EditoraController::class);
 Route::resource('emprestimos',EmprestimoController::class);
+Route::resource('itemEmprestimos',ItemEmprestimoController::class);
 
 require __DIR__.'/auth.php';
