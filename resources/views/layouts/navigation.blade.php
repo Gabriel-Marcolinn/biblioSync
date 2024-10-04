@@ -64,12 +64,12 @@
                     </x-slot>
 
                     <x-slot name="content" class="bg-dark">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link class="bg-dark" :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" class="bg-dark" action="{{ route('logout') }}">
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
