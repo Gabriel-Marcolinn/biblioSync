@@ -54,7 +54,8 @@ class GeneroController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $genero = Genero::findOrFail($id);
+        return view('generos.edit', compact('genero'));
     }
 
     /**
@@ -62,7 +63,13 @@ class GeneroController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $genero = Genero::findOrFail($id);
+
+        $genero->descricao = $request->input('descricao');
+
+        $genero->save();
+
+        return redirect()->route('generos.index');
     }
 
     /**
