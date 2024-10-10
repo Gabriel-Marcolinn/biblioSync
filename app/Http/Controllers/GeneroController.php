@@ -77,6 +77,9 @@ class GeneroController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $genero = Genero::findOrFail($id);
+        $genero->delete();
+
+        return redirect()->route('generos.index');
     }
 }
