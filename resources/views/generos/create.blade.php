@@ -18,8 +18,9 @@
                 <div class="text-center">
                     <button type="submit" class="btn btn-success">Enviar</button>
                     <button type="reset" class="btn btn-danger">Apagar</button>
-                </div>
-            </div>
+                </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <a href="{{route('generos.index')}}" class="btn btn-primary">Voltar</a>
+            </div>            
         </div>
     </form>
 </body>

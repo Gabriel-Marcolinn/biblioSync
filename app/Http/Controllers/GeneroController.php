@@ -45,7 +45,8 @@ class GeneroController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $genero = Genero::findOrFail($id);
+        return view('generos.show',compact('genero'));
     }
 
     /**
