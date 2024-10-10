@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('data_devolucao')->nullable();
             $table->double('multa')->nullable();
             $table->integer('atraso')->nullable();
+            $table->double('multaDiaria');
             $table->bigInteger('cliente');
             $table->timestamps();
 
