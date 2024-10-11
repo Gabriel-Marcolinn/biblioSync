@@ -22,6 +22,8 @@
                 <div class="text-center">
                     <button type="submit" class="btn btn-success">Enviar</button>
                     <button type="reset" class="btn btn-danger">Apagar</button>
+                    </div><br><br><br><br><br><br><br><br><br><br><br>
+                    <a href="{{route('editoras.index')}}" class="btn btn-primary">Voltar</a>
                 </div>
             </div>
         </div>

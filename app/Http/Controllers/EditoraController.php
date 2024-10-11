@@ -32,11 +32,16 @@ class EditoraController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'nome.required'=>'É necessário preencher o nome da editora!',
+            'CNPJ.required'=>'É necessário preencher o CNPJ da editora!',
+            'CNPJ.min'=>'É necessário preencher um mínimo de 6 caracteres no CNPJ!'
+        ];
         //cria os dados
         $request->validate([    //verifica cada coluna do banco de dados, se tem o que quero nas colunas
             'nome' => 'required|string|max:255',
-            'CNPJ' => 'required|string|max:20'
-        ]);
+            'CNPJ' => 'required|string|max:20|min:6'
+        ],$messages);
 
         Editora::create($request->all());//cria e manda as coisas pro banco(editora é o model, create é o insert e o request )
 
@@ -48,7 +53,9 @@ class EditoraController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $editora = Editora::findOrFail($id);
+        return view('editoras.show',compact('editora'));
+
     }
 
     /**
@@ -56,7 +63,8 @@ class EditoraController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $editora = Editora::findOrFail($id);
+        return view('editoras.edit',compact('editora'));
     }
 
     /**
@@ -64,7 +72,26 @@ class EditoraController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = [
+            'nome.required'=>'É necessário preencher o nome da editora!',
+            'CNPJ.required'=>'É necessário preencher o CNPJ da editora!',
+            'CNPJ.min'=>'É necessário preencher um mínimo de 6 caracteres no CNPJ!'
+        ];
+
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'CNPJ' => 'required|string|max:20|min:6'
+        ],$messages);
+
+        $editora = Editora::findOrFail($id);
+
+        $editora->nome = $request->input('nome');
+        $editora->CNPJ = $request->input('CNPJ');
+
+        $editora->save();
+
+        return redirect()->route('editoras.index');
+
     }
 
     /**
@@ -72,6 +99,10 @@ class EditoraController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $editora = Editora::findOrFail($id);
+        $editora->delete();
+
+        return redirect()->route('editoras.index');
+
     }
 }
