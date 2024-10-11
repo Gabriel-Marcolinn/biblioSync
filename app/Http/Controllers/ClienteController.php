@@ -29,12 +29,19 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'nome.required'=>'É necessário preencher o nome do cliente!',
+            'CPF.required'=>'É necessário preencher o CPF do cliente!',
+            'CPF.min'=>'É necessário preencher um mínimo de 11 caracteres no CPF!',
+            'CPF.max'=>'O CPF pode ter no máximo 15 caracteres!',
+            'email.required'=>'É necessário preencher o e-mail!'
+        ];
         $request->validate([    //verifica cada coluna do banco de dados, se tem o que quero nas colunas
             'nome' => 'required|string|max:50',
-            'CPF' => 'required|string|max:15',
+            'CPF' => 'required|string|max:15|min:11',
             'email' => 'required|string|max:70',
             'telefone' => 'string|max:50',            
-        ]);
+        ],$messages);
 
         Cliente::create($request->all());//cria e manda as coisas pro banco
 
@@ -47,7 +54,8 @@ class ClienteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        return view('clientes.show', compact('cliente'));
     }
 
     /**
@@ -55,7 +63,8 @@ class ClienteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        return view('clientes.edit', compact('cliente'));
     }
 
     /**
@@ -63,7 +72,31 @@ class ClienteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = [
+            'nome.required'=>'É necessário preencher o nome do cliente!',
+            'CPF.required'=>'É necessário preencher o CPF do cliente!',
+            'CPF.min'=>'É necessário preencher um mínimo de 11 caracteres no CPF!',
+            'CPF.max'=>'O CPF pode ter no máximo 15 caracteres!',
+            'email.required'=>'É necessário preencher o e-mail!'
+        ];
+        $request->validate([    //verifica cada coluna do banco de dados, se tem o que quero nas colunas
+            'nome' => 'required|string|max:50',
+            'CPF' => 'required|string|max:15|min:11',
+            'email' => 'required|string|max:70',
+            'telefone' => 'string|max:50',            
+        ],$messages);
+
+        $cliente = Cliente::findOrFail($id);
+
+        $cliente->nome = $request->input('nome');
+        $cliente->CPF = $request->input('CPF');
+        $cliente->email = $request->input('email');
+        $cliente->telefone = $request->input('telefone');
+
+        $cliente->save();
+
+        return redirect()->route('clientes.index');
+
     }
 
     /**
@@ -71,6 +104,8 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        $cliente -> delete();
+        return redirect()->route('clientes.index');
     }
 }
