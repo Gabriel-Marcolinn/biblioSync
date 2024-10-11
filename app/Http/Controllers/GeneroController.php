@@ -31,9 +31,13 @@ class GeneroController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'descricao.required'=>'É necessário preencher a descrição!'
+        ];
+
         $request->validate([    //verifica cada coluna do banco de dados, se tem o que quero nas colunas
-            'descricao' => 'required|string|max:255',
-        ]);
+            'descricao' => 'required|string|max:255|min:1'
+        ],$messages);
 
         Genero::create($request->all());//cria e manda as coisas pro banco
 
@@ -63,6 +67,13 @@ class GeneroController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
+        $request->validate([    //verifica cada coluna do banco de dados, se tem o que quero nas colunas
+            'descricao' => 'required|string|max:255|min:1'
+        ],[
+            'descricao.required'=>'É necessário preencher a descrição!'
+        ]);
+
         $genero = Genero::findOrFail($id);
 
         $genero->descricao = $request->input('descricao');
