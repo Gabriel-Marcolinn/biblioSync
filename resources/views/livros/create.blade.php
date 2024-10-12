@@ -8,6 +8,7 @@
 </head>
 <body>
     <form action="{{route('livros.store')}}" method="POST">
+    @csrf
         <div class="container">
             <div class="col-6 mx-auto">
                 <div class="mb-3">
@@ -16,8 +17,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="datalancamento" class="form-label text-white"><strong>Data de lançamento:</strong></label>
-                    <input type="date" class="form-control" id="datalancamento" name="datalancamento" placeholder="Digite a data de lançamento do livro...">
+                    <label for="data_lancamento" class="form-label text-white"><strong>Data de lançamento:</strong></label>
+                    <input type="date" class="form-control" id="data_lancamento" name="data_lancamento" placeholder="Digite a data de lançamento do livro...">
                 </div>
                 
                 <div class="mb-3">
@@ -31,11 +32,6 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="datacadastro" class="form-label text-white"><strong>Data de Cadastro:</strong></label>
-                    <input type="date" class="form-control" id="datacadastro" name="datacadastro" placeholder="Digite a data de cadastro do livro...">
-                </div>
-
-                <div class="mb-3">
                     <label for="genero" class="form-label text-white"><strong>Gênero:</strong></label>
                     <!--<input type="date" class="form-control" id="datacadastro" name="datacadastro" placeholder="Digite a data de cadastro do livro...">-->
                 </div>
@@ -44,11 +40,17 @@
                     <label for="editora" class="form-label text-white"><strong>Editora:</strong></label>
                     <!--<input type="date" class="form-control" id="datacadastro" name="datacadastro" placeholder="Digite a data de cadastro do livro...">-->
                 </div>
+                
+                <div class="form-floating">
+                    <textarea class="form-control" id="floatingTextarea2" name="sinopse" placeholder="Digite a sinopse do livro..." style="height: 200px"></textarea>
+                    <label for="floatingTextarea2">Sinopse</label>
+                </div>
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-success">Enviar</button>
-                    <button type="reset" class="btn btn-danger">Apagar</button>
+                    <button type="reset" class="btn btn-danger">Apagar</button>                    
                 </div>
+                <a href="{{route('livros.index')}}" class="btn btn-primary">Voltar</a>
             </div>
         </div>
     </form>

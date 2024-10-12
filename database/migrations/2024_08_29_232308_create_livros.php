@@ -17,7 +17,6 @@ return new class extends Migration
             $table->date('data_lancamento');
             $table->string('autor');
             $table->string('localizacao');
-            $table->date('data_cadastro');
             $table->bigInteger('genero');
             $table->bigInteger('editora');
             $table->timestamps();
