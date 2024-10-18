@@ -32,13 +32,23 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="genero" class="form-label text-white"><strong>Gênero:</strong></label>
-                    <!--<input type="date" class="form-control" id="datacadastro" name="datacadastro" placeholder="Digite a data de cadastro do livro...">-->
+                    <label for="genero_id" class="form-label text-white"><strong>Gênero:</strong></label>
+                    <select name="genero_id" id="genero_id" required class="form-select">
+                        <option value="" disabled selected> Selecione um Gênero</option>
+                        @foreach($generos as $genero)
+                            <option value="{{$genero->id}}">{{$genero->descricao}}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="mb-3">
-                    <label for="editora" class="form-label text-white"><strong>Editora:</strong></label>
-                    <!--<input type="date" class="form-control" id="datacadastro" name="datacadastro" placeholder="Digite a data de cadastro do livro...">-->
+                    <label for="editora_id" class="form-label text-white"><strong>Editora:</strong></label>
+                    <select name="editora_id" id="editora_id" required class="form-select">
+                        <option value="" disabled selected> Selecione uma Editora</option>
+                        @foreach($editoras as $editora)
+                            <option value="{{$editora->id}}">{{$editora->nome}}</option>
+                        @endforeach
+                    </select>                
                 </div>
                 
                 <div class="form-floating">

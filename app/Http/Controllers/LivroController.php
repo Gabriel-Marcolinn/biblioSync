@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Livro; //trazer o model de todas as tabelas
-use APP\Models\Genero;
-use APP\Models\Editora;
+use App\Models\Genero;
+use App\Models\Editora;
 class LivroController extends Controller
 {
     /**
