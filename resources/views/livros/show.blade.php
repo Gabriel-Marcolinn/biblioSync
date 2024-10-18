@@ -36,11 +36,11 @@
                 </tr>
                 <tr>
                     <td>Gênero:</td>
-                    <td>{{$livro->genero}}</td>
+                    <td>{{$livro->genero->descricao}}</td>
                 </tr>
                 <tr>
                     <td>Editora:</td>
-                    <td>{{$livro->editora}}</td>
+                    <td>{{$livro->editora->nome}}</td>
                 </tr>
                 <tr>
                     <td>Sinopse:</td>

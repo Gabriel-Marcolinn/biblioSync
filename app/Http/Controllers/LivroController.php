@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Livro;
+use App\Models\Livro; //trazer o model de todas as tabelas
+use APP\Models\Genero;
+use APP\Models\Editora;
 class LivroController extends Controller
 {
     /**
@@ -11,7 +13,7 @@ class LivroController extends Controller
      */
     public function index()
     {
-        $livros = Livro::all(); //all traz todas as informações da tabela
+        $livros = Livro::with(['genero','editora'])->get(); //with traz as informações de todas as tabelas
         return view('livros.index', compact('livros'));
     }
 
@@ -20,7 +22,9 @@ class LivroController extends Controller
      */
     public function create()
     {
-        return view ('livros.create');
+        $editoras= Editora::all();
+        $generos = Genero::all();
+        return view ('livros.create', compact('editoras','generos'));
     }
 
     /**
@@ -44,7 +48,13 @@ class LivroController extends Controller
             'localizacao.string' => 'A localização deve ser uma string.',
             'localizacao.max' => 'A localização não pode ter mais de 5 caracteres.',
 
-            'sinopse.max'=>'A Sinopse não pode ter mais de 800 caracteres'
+            'sinopse.max'=>'A Sinopse não pode ter mais de 800 caracteres',
+
+            'editora_id.required' => 'A editora é obrigatória.',
+            'editora_id.exists' => 'A editora informada não existe.',
+            
+            'genero_id.required' => 'O gênero é obrigatório.',
+            'genero_id.exists' => 'O gênero informado não existe.'
         ];
         
         $request->validate([    //verifica cada coluna do banco de dados, se tem o que quero nas colunas
@@ -52,7 +62,9 @@ class LivroController extends Controller
             'data_lancamento' => 'required|date',
             'autor' => 'required|string|max:50',
             'localizacao' => 'required|string|max:5',
-            'sinopse'=>'max:800'           
+            'sinopse'=>'max:800',
+            'editora_id' => 'required|exists:editoras,id',
+            'genero_id' => 'required|exists:generos,id',           
         ],$messages);
         Livro::create($request->all());//cria e manda as coisas pro banco
 
@@ -66,7 +78,7 @@ class LivroController extends Controller
      */
     public function show(string $id)
     {
-        $livro = Livro::findOrFail($id);
+        $livro = Livro::with(['genero','editora'])->findOrFail($id);
         return view('livros.show',compact('livro'));
     }
 
@@ -76,7 +88,9 @@ class LivroController extends Controller
     public function edit(string $id)
     {
         $livro = Livro::findOrFail($id);
-        return view('livros.edit',compact('livro'));
+        $editoras=Editora::all();
+        $generos=Genero::all();
+        return view('livros.edit',compact('livro','editoras','generos'));
 
     }
 
@@ -101,7 +115,14 @@ class LivroController extends Controller
             'localizacao.string' => 'A localização deve ser uma string.',
             'localizacao.max' => 'A localização não pode ter mais de 5 caracteres.',
 
-            'sinopse.max'=>'A Sinopse não pode ter mais de 800 caracteres'
+            'sinopse.max'=>'A Sinopse não pode ter mais de 800 caracteres',
+
+            'editora_id.required' => 'A editora é obrigatória.',
+            'editora_id.exists' => 'A editora informada não existe.',
+            
+            'genero_id.required' => 'O gênero é obrigatório.',
+            'genero_id.exists' => 'O gênero informado não existe.'
+
         ];
         
         $request->validate([    //verifica cada coluna do banco de dados, se tem o que quero nas colunas
@@ -109,7 +130,9 @@ class LivroController extends Controller
             'data_lancamento' => 'required|date',
             'autor' => 'required|string|max:50',
             'localizacao' => 'required|string|max:5',
-            'sinopse'=>'max:800'           
+            'sinopse'=>'max:800',
+            'editora_id' => 'required|exists:editoras,id',
+            'genero_id' => 'required|exists:generos,id',                      
         ],$messages);
 
         $livro = Livro::findOrFail($id);

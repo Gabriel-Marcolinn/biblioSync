@@ -17,12 +17,12 @@ return new class extends Migration
             $table->date('data_lancamento');
             $table->string('autor');
             $table->string('localizacao');
-            $table->bigInteger('genero');
-            $table->bigInteger('editora');
+            $table->bigInteger('genero_id');
+            $table->bigInteger('editora_id');
             $table->timestamps();
 
-            $table->foreign('genero')->references('id')->on('generos');
-            $table->foreign('editora')->references('id')->on('editoras');
+            $table->foreign('genero_id')->references('id')->on('generos');
+            $table->foreign('editora_id')->references('id')->on('editoras');
         });
     }
 

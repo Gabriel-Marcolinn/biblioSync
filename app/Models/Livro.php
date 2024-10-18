@@ -9,4 +9,12 @@ class Livro extends Model
 {
     protected $table = 'livros';
     protected $fillable = ['titulo','data_lancamento','autor','localizacao','genero','editora','sinopse'];
+
+    public function editora(){
+        return $this->belongsTo(Editora::class);
+    }
+
+    public function genero(){
+        return $this->belongsTo(Genero::class);
+    }
 }
