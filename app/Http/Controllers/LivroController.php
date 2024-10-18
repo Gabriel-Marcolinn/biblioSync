@@ -139,10 +139,10 @@ class LivroController extends Controller
 
         $livro->titulo = $request->input('titulo');
         $livro->data_lancamento = $request->input('data_lancamento');
-        $livro->editora = $request->input('editora');
+        $livro->editora_id = $request->input('editora_id');
         $livro->autor = $request->input('autor');
         $livro->localizacao = $request->input('localizacao');
-        $livro->genero = $request->input('genero');
+        $livro->genero_id = $request->input('genero_id');
         $livro->sinopse = $request->input('sinopse');
 
         $livro->save();

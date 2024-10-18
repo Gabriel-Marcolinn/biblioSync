@@ -34,13 +34,21 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="genero" class="form-label text-white"><strong>Gênero:</strong></label>
-                    <input type="text" class="form-control" id="genero" name="genero" value="{{old('genero', $livro->genero)}}">
+                    <label for="genero_id" class="form-label text-white"><strong>Gênero:</strong></label>
+                    <select name="genero_id" id="genero_id" required class="form-select">
+                        @foreach($generos as $genero)
+                            <option value="{{$genero->id}}" {{$livro->genero_id == $genero->id ? 'selected' : ''}}>{{$genero->descricao}}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="mb-3">
-                    <label for="editora" class="form-label text-white"><strong>Editora:</strong></label>
-                    <input type="text" class="form-control" id="editora" name="editora" value="{{old('editora', $livro->editora)}}">
+                <label for="editora_id" class="form-label text-white"><strong>Editora:</strong></label>
+                    <select name="editora_id" id="editora_id" required class="form-select">
+                        @foreach($editoras as $editora)
+                            <option value="{{$editora->id}}" {{$livro->editora_id == $editora->id ? 'selected' : ''}}>{{$editora->nome}}</option>
+                        @endforeach
+                    </select>                
                 </div>
 
                 <div class="form-floating">
