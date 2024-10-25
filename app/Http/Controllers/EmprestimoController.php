@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Emprestimo;
+use App\Models\Cliente;
+use App\Models\ItemEmprestimo;
 
 class EmprestimoController extends Controller
 {
@@ -13,7 +15,7 @@ class EmprestimoController extends Controller
      */
     public function index()
     {
-        $emprestimos = Emprestimo::all(); //all traz todas as informações da tabela
+        $emprestimos = Emprestimo::with(['cliente'])->get(); //all traz todas as informações da tabela
         return view('emprestimos.index', compact('emprestimos'));
     }
 
@@ -22,7 +24,8 @@ class EmprestimoController extends Controller
      */
     public function create()
     {
-        return view ('emprestimos.create');
+        $clientes= Cliente::all();
+        return view ('emprestimos.create',compact('clientes'));
     }
 
     /**
@@ -30,7 +33,32 @@ class EmprestimoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'data_retirada.date' => 'A data de retirada deve ser uma data válida.',
+            
+            'data_devolucao.date' => 'A data de devolução deve ser uma data válida.',
+            
+            'multa.numeric' => 'A multa deve ser um valor numérico.',
+            'multa.min' => 'A multa não pode ser um valor negativo.',
+            
+            'atraso.integer' => 'O atraso deve ser um valor inteiro.',
+            'atraso.min' => 'O atraso não pode ser um valor negativo.',
+                        
+            'cliente_id.required' => 'O cliente é obrigatório.',
+            'cliente_id.exists' => 'O cliente informado não existe.',
+        ];
+        
+        $request->validate([
+            'data_retirada' => 'nullable|date',
+            'data_devolucao' => 'nullable|date|after_or_equal:data_retirada',
+            'multa' => 'nullable|numeric|min:0',
+            'atraso' => 'nullable|integer|min:0',
+            'cliente_id' => 'required|exists:clientes,id',
+        ], $messages);
+
+        $emprestimo = Emprestimo::create($request->all());
+
+        return redirect() -> route('emprestimos.show',$emprestimo->id)->with('success','Empréstimo criado com sucesso!');
     }
 
     /**
@@ -38,7 +66,9 @@ class EmprestimoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $emprestimo = Emprestimo::with('itemEmprestimo')->findOrFail($id);
+
+        return view('emprestimos.show',compact('emprestimo'));
     }
 
     /**
@@ -46,7 +76,9 @@ class EmprestimoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $emprestimo = Emprestimo::findOrFail($id);
+        $clientes = Clientes::all();
+        return view('emprestimos.edit',compact('emprestimo','cliente'));
     }
 
     /**
@@ -54,7 +86,37 @@ class EmprestimoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $messages = [
+            'data_retirada.date' => 'A data de retirada deve ser uma data válida.',
+            
+            'data_devolucao.date' => 'A data de devolução deve ser uma data válida.',
+            
+            'multa.numeric' => 'A multa deve ser um valor numérico.',
+            'multa.min' => 'A multa não pode ser um valor negativo.',
+            
+            'atraso.integer' => 'O atraso deve ser um valor inteiro.',
+            'atraso.min' => 'O atraso não pode ser um valor negativo.',
+            
+            
+            'cliente_id.required' => 'O cliente é obrigatório.',
+            'cliente_id.exists' => 'O cliente informado não existe.',
+        ];
+        
+        $request->validate([
+            'data_retirada' => 'nullable|date',
+            'data_devolucao' => 'nullable|date|after_or_equal:data_retirada',
+            'multa' => 'nullable|numeric|min:0',
+            'atraso' => 'nullable|integer|min:0',
+            'cliente_id' => 'required|exists:clientes,id',
+        ], $messages);
+
+        $emprestimo = Emprestimo::findOrFail($id);
+
+        $emprestimo->data_retirada = $request->input('data_retirada');
+        $emprestimo->data_devolucao = $request->input('data_devolucao');
+        $emprestimo->multa = $request->input('multa');
+        $emprestimo->atraso = $request->input('atraso');
+        $emprestimo->cliente = $request->input('cliente_id');
     }
 
     /**
@@ -62,6 +124,8 @@ class EmprestimoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $emprestimo = Emprestimo::findOrFail($id);
+        $emprestimo->delete();
+        return redirect()->route('emprestimos.index');
     }
 }

@@ -9,8 +9,19 @@
 </head>
 <body>
     <form action="{{route('emprestimos.store')}}" method="POST">
+    @csrf
         <div class="container">
             <div class="col-6 mx-auto">
+
+            <div class="mb-3">
+                    <label for="cliente_id" class="form-label text-white"><strong>Cliente:</strong></label>
+                    <select name="cliente_id" id="cliente_id" required class="form-select">
+                        <option value="" disabled selected> Selecione um Cliente</option>
+                        @foreach($clientes as $cliente)
+                            <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
             <div class="mb-3">
                     <label for="multaPct" class="form-label text-white"><strong>Multa Diária:</strong></label>
@@ -18,13 +29,13 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="dataretirada" class="form-label text-white"><strong>Data de retirada:</strong></label>
-                    <input type="date" class="form-control" id="dataretirada" name="dataretirada" placeholder="Digite a data de retirada do empréstimo...">
+                    <label for="data_retirada" class="form-label text-white"><strong>Data de retirada:</strong></label>
+                    <input type="date" class="form-control" id="data_retirada" name="data_retirada" placeholder="Digite a data de retirada do empréstimo...">
                 </div>
 
                 <div class="mb-3">
-                    <label for="datadevolucao" class="form-label text-white"><strong>Data de devolução:</strong></label>
-                    <input type="date" class="form-control" id="datadevolucao" name="datadevolucao" placeholder="Digite a data de devolução do empréstimo...">
+                    <label for="data_devolucao" class="form-label text-white"><strong>Data de devolução:</strong></label>
+                    <input type="date" class="form-control" id="data_devolucao" name="data_devolucao" placeholder="Digite a data de devolução do empréstimo...">
                 </div>
 
                 <div class="mb-3">
@@ -35,11 +46,6 @@
                 <div class="mb-3">
                     <label for="atraso" class="form-label text-white"><strong>Atraso (dias):</strong></label>
                     <input type="number" class="form-control" id="atraso" name="atraso" placeholder="O atraso aparecerá aqui..." readonly>
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label text-white"><strong>Cliente:</strong></label>
-                    <!--<input type="text" class="form-control" id="dataretirada" name="dataretirada" placeholder="Digite a data de retirada do empréstimo...">-->
                 </div>
 
                 <div class="text-center">

@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('item_emprestimos', function (Blueprint $table) {
             $table->id();
             $table->integer('quantidade');
-            $table->bigInteger('livro');
-            $table->bigInteger('emprestimo');
+            $table->bigInteger('livro_id');
+            $table->bigInteger('emprestimo_id');
             $table->timestamps();
 
-            $table->foreign('livro')->references('id')->on('livros');
-            $table->foreign('emprestimo')->references('id')->on('emprestimos');
+            $table->foreign('livro_id')->references('id')->on('livros');
+            $table->foreign('emprestimo_id')->references('id')->on('emprestimos');
         });
     }
 

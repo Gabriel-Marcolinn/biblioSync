@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-        const dataRetiradaInput = document.getElementById('dataretirada');
-        const dataDevolucaoInput = document.getElementById('datadevolucao');
+        const dataRetiradaInput = document.getElementById('data_retirada');
+        const dataDevolucaoInput = document.getElementById('data_devolucao');
         const multaInput = document.getElementById('multa');
         const atrasoInput = document.getElementById('atraso');
         const multaPct = document.getElementById('multaPct');

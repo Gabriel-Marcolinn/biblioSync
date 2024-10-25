@@ -17,11 +17,10 @@ return new class extends Migration
             $table->date('data_devolucao')->nullable();
             $table->double('multa')->nullable();
             $table->integer('atraso')->nullable();
-            $table->double('multaDiaria');
-            $table->bigInteger('cliente');
+            $table->bigInteger('cliente_id');
             $table->timestamps();
 
-            $table->foreign('cliente')->references('id')->on('clientes');
+            $table->foreign('cliente_id')->references('id')->on('clientes');
         });
     }
 
