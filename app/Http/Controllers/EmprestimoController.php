@@ -127,6 +127,7 @@ class EmprestimoController extends Controller
     public function destroy(string $id)
     {
         $emprestimo = Emprestimo::findOrFail($id);
+        $emprestimo->itemEmprestimo()->delete();
         $emprestimo->delete();
         return redirect()->route('emprestimos.index');
     }
