@@ -79,7 +79,7 @@ class EmprestimoController extends Controller
     public function edit(string $id)
     {
         $emprestimo = Emprestimo::findOrFail($id);
-        $clientes = Clientes::all();
+        $clientes = Cliente::all();
         return view('emprestimos.edit',compact('emprestimo','cliente'));
     }
 

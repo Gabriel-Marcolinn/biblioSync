@@ -79,6 +79,6 @@ class ItemEmprestimoController extends Controller
     {
         $item = ItemEmprestimo::findOrFail($id);
         $item->delete();
-        return redirect()->route('emprestimos.show',$request->input('emprestimo_id'));
+        return redirect()->route('emprestimos.show',$item->emprestimo_id);
     }
 }

@@ -35,7 +35,7 @@
                     <td>{{$item->quantidade}}</td>                    
                     <td>
                         <a href="{{route('itemEmprestimos.edit', $item->id)}}" class="btn btn-primary">Editar</a>
-                        <form action="{{route('itemEmprestimos.destroy', $livro->id)}}" method="POST" style="display:inline;">
+                        <form action="{{route('itemEmprestimos.destroy', $item->id)}}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Deletar</button>
