@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Emprestimo;
 use App\Models\Cliente;
 use App\Models\ItemEmprestimo;
+use App\Models\Livro;
 
 class EmprestimoController extends Controller
 {
@@ -67,8 +68,9 @@ class EmprestimoController extends Controller
     public function show(string $id)
     {
         $emprestimo = Emprestimo::with('itemEmprestimo')->findOrFail($id);
+        $livros = Livro::all();
 
-        return view('emprestimos.show',compact('emprestimo'));
+        return view('emprestimos.show',compact('emprestimo', 'livros'));
     }
 
     /**

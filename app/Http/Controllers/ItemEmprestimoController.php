@@ -13,8 +13,7 @@ class ItemEmprestimoController extends Controller
      */
     public function index()
     {
-        $itemEmprestimos = ItemEmprestimo::all();
-        return view('itemEmprestimos.index', compact('itemEmprestimos'));
+        //
     }
 
     /**
@@ -22,7 +21,7 @@ class ItemEmprestimoController extends Controller
      */
     public function create()
     {
-        return view ('itemEmprestimos.create');
+        //    
     }
 
     /**
@@ -30,7 +29,23 @@ class ItemEmprestimoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'quantidade.required' => 'A quantidade é obrigatória para cada item do empréstimo.',
+            'quantidade.integer' => 'A quantidade deve ser um número inteiro.',
+            'quantidade.min' => 'A quantidade deve ser pelo menos 1.',
+            'livro_id.required' => 'O livro é obrigatório para cada item do empréstimo.',
+            'livro_id.exists' => 'O livro informado não existe.',
+        ];
+        
+        $request->validate([
+            'quantidade' => 'required|integer|min:1',
+            'livro_id' => 'required|exists:livros,id',
+        ], $messages);
+
+        $item = ItemEmprestimo::create($request->all());
+
+        return redirect() -> route('emprestimos.show',$request->input('emprestimo_id'))->with('success','Item criado com sucesso!');
+
     }
 
     /**
@@ -62,6 +77,8 @@ class ItemEmprestimoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = ItemEmprestimo::findOrFail($id);
+        $item->delete();
+        return redirect()->route('emprestimos.show',$request->input('emprestimo_id'));
     }
 }
