@@ -80,7 +80,7 @@ class EmprestimoController extends Controller
     {
         $emprestimo = Emprestimo::findOrFail($id);
         $clientes = Cliente::all();
-        return view('emprestimos.edit',compact('emprestimo','cliente'));
+        return view('emprestimos.edit',compact('emprestimo','clientes'));
     }
 
     /**
@@ -118,7 +118,10 @@ class EmprestimoController extends Controller
         $emprestimo->data_devolucao = $request->input('data_devolucao');
         $emprestimo->multa = $request->input('multa');
         $emprestimo->atraso = $request->input('atraso');
-        $emprestimo->cliente = $request->input('cliente_id');
+        $emprestimo->cliente_id = $request->input('cliente_id');
+
+        $emprestimo->save();
+        return redirect()->route("emprestimos.index");
     }
 
     /**

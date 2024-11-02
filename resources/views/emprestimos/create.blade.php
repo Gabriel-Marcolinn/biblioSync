@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Empréstimo</title>
-    <!--rever bastante cálculos que podem ser feitos automaticamente-->
 </head>
 <body>
     <form action="{{route('emprestimos.store')}}" method="POST">
@@ -23,7 +22,7 @@
                     </select>
                 </div>
 
-            <div class="mb-3">
+                <div class="mb-3">
                     <label for="multaPct" class="form-label text-white"><strong>Multa Diária:</strong></label>
                     <input type="number" class="form-control" id="multaPct" name="multaPct" placeholder="Digite o valor de multa por dia de atraso...">
                 </div>
@@ -51,7 +50,8 @@
                 <div class="text-center">
                     <button type="submit" class="btn btn-success">Enviar</button>
                     <button type="reset" class="btn btn-danger">Apagar</button>
-                </div>
+                </div><br><br>
+                <a href="{{route('emprestimos.index')}}" class="btn btn-primary">Voltar</a>
             </div>
         </div>
     </form>

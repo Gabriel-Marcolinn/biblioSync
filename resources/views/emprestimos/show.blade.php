@@ -14,8 +14,8 @@
         <div class="fs-4">
             <p>Cliente: {{ $emprestimo->cliente->nome }}</p>
             <p>Data de Retirada: {{ $emprestimo->data_retirada}}</p>
-        </div><br><br>
-        <h1 class="display-6 text-center">Itens:</h1>
+        </div><br><hr><br>
+        <h1 class="display-6">Itens:</h1>
     <table class="table table-dark table-striped-columns">
             <thead>
                 <tr>
@@ -44,10 +44,10 @@
                 </tr>
                 @endforeach
             </tbody>
-        </table>
+        </table><br><hr><br>
 
 
-
+    <h1 class="display-6">Adicionar itens:</h1>
     <form action="{{ route('itemEmprestimos.store') }}" method="POST">
         @csrf
         <input type="hidden" name="emprestimo_id" value="{{ $emprestimo->id }}">
@@ -68,7 +68,7 @@
                 </div>
 
        <button type="submit" class="btn btn-primary">Adicionar Item</button>
-    </form><br><br>
-
+    </form><br>
+      <a href="{{route('emprestimos.index')}}" class="btn btn-primary">Voltar</a>
     </div>
 </x-app-layout>

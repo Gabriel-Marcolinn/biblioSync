@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
+        multaPct.addEventListener('change',calcularMulta)
         dataRetiradaInput.addEventListener('change', calcularMulta);
         dataDevolucaoInput.addEventListener('change', calcularMulta);
     });
