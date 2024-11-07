@@ -42,7 +42,7 @@
                 @endforeach
             </tbody>
         </table>
-    <a href="{{route('emprestimos.create')}}" class="btn btn-success">Inserir novo emprestimo</a>
+    <a href="{{route('emprestimos.create')}}" class="btn btn-success">Inserir novo empréstimo</a>
     </div>
     </body>
     </html>
