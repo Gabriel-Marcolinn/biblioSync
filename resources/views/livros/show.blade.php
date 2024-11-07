@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <td>Data de Lançamento:</td>
-                    <td>{{$livro->data_lancamento}}</td>
+                    <td>{{date ('d/m/Y', strtotime($livro->data_lancamento))}}</td>
                 </tr>
                 <tr>
                     <td>Autor:</td>

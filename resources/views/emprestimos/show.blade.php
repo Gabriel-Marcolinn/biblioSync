@@ -13,7 +13,7 @@
 
         <div class="fs-4">
             <p>Cliente: {{ $emprestimo->cliente->nome }}</p>
-            <p>Data de Retirada: {{ $emprestimo->data_retirada}}</p>
+            <p>Data de Retirada: {{date('d/m/Y',strtotime($emprestimo->data_retirada))}}</p>
         </div><br><hr><br>
         <h1 class="display-6">Itens:</h1>
     <table class="table table-dark table-striped-columns">

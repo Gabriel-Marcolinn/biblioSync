@@ -25,8 +25,8 @@
                 <tr>
                     <td>{{$emprestimo->id}}</td>
                     <td>{{$emprestimo->cliente->nome}}</td>
-                    <td>{{$emprestimo->data_retirada}}</td>
-                    <td>{{$emprestimo->data_devolucao}}</td>
+                    <td>{{date('d/m/Y',strtotime($emprestimo->data_retirada))}}</td>
+                    <td>{{date ('d/m/Y',strtotime($emprestimo->data_devolucao))}}</td>
                     <td>{{$emprestimo->atraso}}</td>
                     <td>{{$emprestimo->multa}}</td>                    
                     <td>
