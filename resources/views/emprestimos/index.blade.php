@@ -16,7 +16,8 @@
                     <th>Data de Retirada</th>  
                     <th>Data de Devolução</th>
                     <th>Atraso</th>   
-                    <th>Multa</th>                     
+                    <th>Multa</th>
+                    <th>Qtd. Itens</th>                     
                     <th>Ações</th>             
                 </tr>
             </thead>
@@ -28,7 +29,8 @@
                     <td>{{date('d/m/Y',strtotime($emprestimo->data_retirada))}}</td>
                     <td>{{date ('d/m/Y',strtotime($emprestimo->data_devolucao))}}</td>
                     <td>{{$emprestimo->atraso}}</td>
-                    <td>{{$emprestimo->multa}}</td>                    
+                    <td>{{$emprestimo->multa}}</td>        
+                    <td>{{ isset($itensCount[$emprestimo->id]) ? $itensCount[$emprestimo->id] : '0' }}</td>            
                     <td>
                         <a href="{{route('emprestimos.show',$emprestimo->id)}}" class="btn btn-info">Itens</a>
                         <a href="{{route('emprestimos.edit', $emprestimo->id)}}" class="btn btn-primary">Editar</a>

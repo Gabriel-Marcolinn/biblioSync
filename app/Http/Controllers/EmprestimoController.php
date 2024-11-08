@@ -16,8 +16,12 @@ class EmprestimoController extends Controller
      */
     public function index()
     {
-        $emprestimos = Emprestimo::with(['cliente'])->get(); //all traz todas as informações da tabela
-        return view('emprestimos.index', compact('emprestimos'));
+        $emprestimos = Emprestimo::with(['cliente'])->get();
+        $itensCount = [];
+        foreach ($emprestimos as $emprestimo) {
+            $itensCount[$emprestimo->id] = $emprestimo->itemEmprestimo()->count();
+        };
+        return view('emprestimos.index', compact('emprestimos','itensCount'));
     }
 
     /**
@@ -38,6 +42,8 @@ class EmprestimoController extends Controller
             'data_retirada.date' => 'A data de retirada deve ser uma data válida.',
             
             'data_devolucao.date' => 'A data de devolução deve ser uma data válida.',
+            'data_devolucao.after_or_equal' => 'A data de devolução deve ser posterior à data de retirada!',
+
             
             'multa.numeric' => 'A multa deve ser um valor numérico.',
             'multa.min' => 'A multa não pode ser um valor negativo.',
@@ -92,6 +98,7 @@ class EmprestimoController extends Controller
             'data_retirada.date' => 'A data de retirada deve ser uma data válida.',
             
             'data_devolucao.date' => 'A data de devolução deve ser uma data válida.',
+            'data_devolucao.after_or_equal' => 'A data de devolução deve ser posterior à data de retirada!',
             
             'multa.numeric' => 'A multa deve ser um valor numérico.',
             'multa.min' => 'A multa não pode ser um valor negativo.',
