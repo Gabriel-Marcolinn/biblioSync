@@ -1,11 +1,4 @@
 <x-app-layout>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Emprestimo</title>
-    </head>
     <body>
     <form action="{{route('emprestimos.update', $emprestimo->id)}}" method="POST">
         @csrf
@@ -57,5 +50,4 @@
     </form>
     <script src="{{ asset('js/emprestimos.js') }}"></script>
     </body>
-    </html>
 </x-app-layout>

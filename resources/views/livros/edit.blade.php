@@ -1,11 +1,4 @@
 <x-app-layout>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Livro</title>
-    </head>
     <body>
     <form action="{{route('livros.update', $livro->id)}}" method="POST">
         @csrf
@@ -65,7 +58,5 @@
             </div>            
         </div>
     </form>
-
     </body>
-    </html>
 </x-app-layout>

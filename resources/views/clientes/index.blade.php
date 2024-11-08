@@ -1,11 +1,4 @@
 <x-app-layout>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Clientes</title>
-    </head>
     <body><br><br>
     <div class="container">
         <table class="table table-dark table-striped-columns">
@@ -37,5 +30,4 @@
     <a href="{{route('clientes.create')}}" class="btn btn-success">Inserir novo Cliente</a>
     </div>
     </body>
-    </html>
 </x-app-layout>

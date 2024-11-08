@@ -1,11 +1,5 @@
 <x-app-layout>
-    <!DOCTYPE html>
-    <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Livro</title>
-
         <link rel="stylesheet" href="{{ asset('css/livros.css') }}">
     </head>
     <body><br><br>
@@ -51,5 +45,4 @@
         <a href="{{route('livros.index')}}" class="btn btn-primary">Voltar</a>
         </div>
     </body>
-    </html>
 </x-app-layout>
