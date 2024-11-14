@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Livro extends Model
 {
     protected $table = 'livros';
-    protected $fillable = ['titulo','data_lancamento','autor','localizacao','genero_id','editora_id','sinopse'];
+    protected $fillable = ['titulo','data_lancamento','autor','localizacao','genero_id','editora_id','sinopse','linkIMG'];
 
     public function editora(){
         return $this->belongsTo(Editora::class);

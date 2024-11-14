@@ -4,6 +4,11 @@
     </head>
     <body><br><br>
         <div class="container">
+
+        @if(!empty($livro->linkIMG))
+            <img src="{{$livro->linkIMG}}" alt="" class="rounded img-fluid mx-auto d-block" style="width: 200px; height:350px"><br><br>
+        @endif
+        
         <table class="table table-success table-striped">
             <thead>
                 <tr>

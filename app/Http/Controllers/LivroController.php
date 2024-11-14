@@ -144,6 +144,7 @@ class LivroController extends Controller
         $livro->localizacao = $request->input('localizacao');
         $livro->genero_id = $request->input('genero_id');
         $livro->sinopse = $request->input('sinopse');
+        $livro->foto=$request->input('linkIMG');
 
         $livro->save();
 
