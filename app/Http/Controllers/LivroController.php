@@ -37,8 +37,8 @@ class LivroController extends Controller
             'titulo.string' => 'O título deve ser uma string.',
             'titulo.max' => 'O título não pode ter mais de 50 caracteres.',
             
-            'datalancamento.required' => 'A data de lançamento é obrigatória.',
-            'datalancamento.date' => 'A data de lançamento deve ser uma data válida.',
+            'data_lancamento.required' => 'A data de lançamento é obrigatória.',
+            'data_lancamento.date' => 'A data de lançamento deve ser uma data válida.',
             
             'autor.required' => 'O autor é obrigatório.',
             'autor.string' => 'O autor deve ser uma string.',
@@ -54,7 +54,11 @@ class LivroController extends Controller
             'editora_id.exists' => 'A editora informada não existe.',
             
             'genero_id.required' => 'O gênero é obrigatório.',
-            'genero_id.exists' => 'O gênero informado não existe.'
+            'genero_id.exists' => 'O gênero informado não existe.',
+
+            'linkIMG.url' => 'O link da imagem deve ser uma URL válida.',
+            'linkUMG.max' => 'A URL não pode ter mais de 255 caracteres'
+
         ];
         
         $request->validate([    //verifica cada coluna do banco de dados, se tem o que quero nas colunas
@@ -64,7 +68,8 @@ class LivroController extends Controller
             'localizacao' => 'required|string|max:5',
             'sinopse'=>'max:800',
             'editora_id' => 'required|exists:editoras,id',
-            'genero_id' => 'required|exists:generos,id',           
+            'genero_id' => 'required|exists:generos,id',
+            'linkIMG' => 'url|max:255'      
         ],$messages);
         Livro::create($request->all());//cria e manda as coisas pro banco
 
@@ -104,8 +109,8 @@ class LivroController extends Controller
             'titulo.string' => 'O título deve ser uma string.',
             'titulo.max' => 'O título não pode ter mais de 50 caracteres.',
             
-            'datalancamento.required' => 'A data de lançamento é obrigatória.',
-            'datalancamento.date' => 'A data de lançamento deve ser uma data válida.',
+            'data_lancamento.required' => 'A data de lançamento é obrigatória.',
+            'data_lancamento.date' => 'A data de lançamento deve ser uma data válida.',
             
             'autor.required' => 'O autor é obrigatório.',
             'autor.string' => 'O autor deve ser uma string.',
@@ -121,8 +126,10 @@ class LivroController extends Controller
             'editora_id.exists' => 'A editora informada não existe.',
             
             'genero_id.required' => 'O gênero é obrigatório.',
-            'genero_id.exists' => 'O gênero informado não existe.'
+            'genero_id.exists' => 'O gênero informado não existe.',
 
+            'linkIMG.url' => 'O link da imagem deve ser uma URL válida.',
+            'linkUMG.max' => 'A URL não pode ter mais de 255 caracteres'
         ];
         
         $request->validate([    //verifica cada coluna do banco de dados, se tem o que quero nas colunas
@@ -132,7 +139,8 @@ class LivroController extends Controller
             'localizacao' => 'required|string|max:5',
             'sinopse'=>'max:800',
             'editora_id' => 'required|exists:editoras,id',
-            'genero_id' => 'required|exists:generos,id',                      
+            'genero_id' => 'required|exists:generos,id',
+            'linkIMG' => 'url|max:255'                          
         ],$messages);
 
         $livro = Livro::findOrFail($id);
@@ -144,7 +152,7 @@ class LivroController extends Controller
         $livro->localizacao = $request->input('localizacao');
         $livro->genero_id = $request->input('genero_id');
         $livro->sinopse = $request->input('sinopse');
-        $livro->foto=$request->input('linkIMG');
+        $livro->linkIMG=$request->input('linkIMG');
 
         $livro->save();
 

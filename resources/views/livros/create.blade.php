@@ -10,8 +10,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="linkIMG" class="form-label text-white"><strong>Foto:</strong></label>
-                    <input type="text" class="form-control" id="linkIMG" name="linkIMG" placeholder="Digite o título do livro...">
+                    <label for="linkIMG" class="form-label text-white"><strong>Foto(URL):</strong></label>
+                    <input type="text" class="form-control" id="linkIMG" name="linkIMG" placeholder="Digite a URL da foto do livro...">
                 </div>
 
                 <div class="mb-3">
