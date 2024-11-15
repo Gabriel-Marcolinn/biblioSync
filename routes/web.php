@@ -10,31 +10,21 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Livro;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    //para trazer os dados do livro em tela para listar no dashboard
+    $livros = Livro::whereNotNull('linkIMG') // Certificando-se de que tem imagem
+                   ->inRandomOrder()         // Pegando aleatoriamente
+                   ->take(2)                 // Pegando 2 livros
+                   ->get();
+
+    return view('dashboard', compact('livros'));
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-/*  Professor mandou mudar as rotas para não usar somente get
-Route::get('/livros', function () {
-    return view('livros.index');
-})->middleware(['auth', 'verified'])->name('livros');
-
-Route::get('/generos', function () {
-    return view('generos.index');
-})->middleware(['auth', 'verified'])->name('generos');
-
-Route::get('/editoras', function () {
-    return view('editoras.index');
-})->middleware(['auth', 'verified'])->name('editoras');
-
-Route::get('/emprestimos', function () {
-    return view('emprestimos.index');
-})->middleware(['auth', 'verified'])->name('emprestimos');
-*/
 
 //rota pelo middleware é para pode escolher quais funções quero, como edit, update, destroy
 Route::middleware('auth')->group(function () {

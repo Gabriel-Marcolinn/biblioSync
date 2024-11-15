@@ -29,28 +29,22 @@
 
     <div class="container">
     <div class="row">
-        <div class="col-6">
-        <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-            <div class="my-3 py-3">
-            <h2 class="display-5">1984</h2>
-            <p class="lead"><a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.americanas.com.br%2Fproduto%2F2643058628%2Flivro-1984-george-orwell-capa-brochura&psig=AOvVaw37fw5ubP4dAuSMdNBvSq3d&ust=1726878538271000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPj-vICi0IgDFQAAAAAdAAAAABAE">Saiba mais sobre o título!</a></p>
-            </div>
-            <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 458px; border-radius: 21px 21px 0 0;">
-                <img src="https://images-americanas.b2w.io/produtos/2643058628/imagens/livro-1984-george-orwell-capa-brochura/2643058628_1_large.jpg" alt="">
-            </div>
-        </div>
-        </div>
-    <div class="col-6">
-        <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-            <div class="my-3 p-3">
-            <h2 class="display-5">O Pequeno Príncipe</h2>
-            <p class="lead"><a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.kobstore.com.br%2Flivraria%2Flivro-o-pequeno-principe-capa-azul-autor-antoine-de-saint-exupery&psig=AOvVaw37fw5ubP4dAuSMdNBvSq3d&ust=1726878538271000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPj-vICi0IgDFQAAAAAdAAAAABAJ">Saiba mais sobre o título!</a></p>
-        </div>
-            <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 400px; border-radius: 21px 21px 0 0;">
-                <img src="https://images.tcdn.com.br/img/img_prod/1086289/livro_o_pequeno_principe_capa_azul_autor_antoine_de_saint_exupery_1039_1_7d6c91836277ec1620e4e73ed4a696f8.png" alt="">
+                @foreach ($livros as $livro)
+                    <div class="col-6">
+                        <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+                            <div class="my-3 py-3">
+                                <h2 class="display-5">{{ $livro->titulo }}</h2>
+                                <p class="lead"><a href="{{route('livros.show', $livro->id)}}">Saiba mais sobre o título!</a></p>
+                            </div>
+                            <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 458px; border-radius: 21px 21px 0 0;">
+                                <img src="{{ $livro->linkIMG }}" alt="{{ $livro->titulo }}" class="rounded img-fluid mx-auto d-block" style="width: 200px; height:350px">
+                            </div>
+                        </div>
+                    </div>
+
+                @endforeach
             </div>
         </div>
-        </div><br><br><br>
     </div>
     </div>
     </div>
@@ -74,4 +68,4 @@
   
 </body>
 
-</x-app-layout> <!--herar do app blade pgp-->
+</x-app-layout>
