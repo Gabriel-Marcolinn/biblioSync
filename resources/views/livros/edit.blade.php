@@ -13,7 +13,7 @@
 
                 <div class="mb-3">
                     <label for="linkIMG" class="form-label text-white"><strong>Foto(URL):</strong></label>
-                    <input type="text" class="form-control" id="linkIMG" name="linkIMG" value="{{old('linkIMG', $livro->linkIMG)}}>
+                    <input type="text" class="form-control" id="linkIMG" name="linkIMG" value="{{old('linkIMG', $livro->linkIMG)}}">
                 </div>
 
 
