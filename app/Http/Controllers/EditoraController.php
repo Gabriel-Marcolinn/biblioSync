@@ -35,12 +35,13 @@ class EditoraController extends Controller
         $messages = [
             'nome.required'=>'É necessário preencher o nome da editora!',
             'CNPJ.required'=>'É necessário preencher o CNPJ da editora!',
-            'CNPJ.min'=>'É necessário preencher um mínimo de 6 caracteres no CNPJ!'
+            'CNPJ.min'=>'É necessário preencher um mínimo de 6 caracteres no CNPJ!',
+            'CNPJ.unique'=>'Esse CNPJ já está cadastrado para outra Editora!'
         ];
         //cria os dados
         $request->validate([    //verifica cada coluna do banco de dados, se tem o que quero nas colunas
             'nome' => 'required|string|max:255',
-            'CNPJ' => 'required|string|max:20|min:6'
+            'CNPJ' => 'required|string|max:20|min:6|unique:editoras,CNPJ'
         ],$messages);
 
         Editora::create($request->all());//cria e manda as coisas pro banco(editora é o model, create é o insert e o request )
@@ -75,12 +76,13 @@ class EditoraController extends Controller
         $messages = [
             'nome.required'=>'É necessário preencher o nome da editora!',
             'CNPJ.required'=>'É necessário preencher o CNPJ da editora!',
-            'CNPJ.min'=>'É necessário preencher um mínimo de 6 caracteres no CNPJ!'
+            'CNPJ.min'=>'É necessário preencher um mínimo de 6 caracteres no CNPJ!',
+            'CNPJ.unique'=>'Esse CNPJ já está cadastrado para outra Editora!'
         ];
 
         $request->validate([
             'nome' => 'required|string|max:255',
-            'CNPJ' => 'required|string|max:20|min:6'
+            'CNPJ' => 'required|string|max:20|min:6|unique:editoras,CNPJ,' . $id
         ],$messages);
 
         $editora = Editora::findOrFail($id);
