@@ -56,7 +56,6 @@ class LivroController extends Controller
             'genero_id.required' => 'O gênero é obrigatório.',
             'genero_id.exists' => 'O gênero informado não existe.',
 
-            'linkIMG.url' => 'O link da imagem deve ser uma URL válida.',
             'linkUMG.max' => 'A URL não pode ter mais de 255 caracteres'
 
         ];
@@ -69,7 +68,7 @@ class LivroController extends Controller
             'sinopse'=>'max:800',
             'editora_id' => 'required|exists:editoras,id',
             'genero_id' => 'required|exists:generos,id',
-            'linkIMG' => 'url|max:255'      
+            'linkIMG' => 'max:255'      
         ],$messages);
         Livro::create($request->all());//cria e manda as coisas pro banco
 
@@ -128,7 +127,6 @@ class LivroController extends Controller
             'genero_id.required' => 'O gênero é obrigatório.',
             'genero_id.exists' => 'O gênero informado não existe.',
 
-            'linkIMG.url' => 'O link da imagem deve ser uma URL válida.',
             'linkUMG.max' => 'A URL não pode ter mais de 255 caracteres'
         ];
         
@@ -140,7 +138,7 @@ class LivroController extends Controller
             'sinopse'=>'max:800',
             'editora_id' => 'required|exists:editoras,id',
             'genero_id' => 'required|exists:generos,id',
-            'linkIMG' => 'url|max:255'                          
+            'linkIMG' => 'max:255'                          
         ],$messages);
 
         $livro = Livro::findOrFail($id);
